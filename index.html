@@ -1,0 +1,61 @@
+<!doctype html>
+  <head>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <title>Room Effects | Web Audio API</title>
+
+    <link rel="stylesheet" href="./static/style.css" type="text/css" media="screen" />
+  </head>
+
+  <body>
+
+    <div id="container">
+
+      <div id="wrapper">
+
+        <div id="content">
+
+          <div class="post">
+            <h2><center>Basic Vocal Processing Engine</center></h2>
+            <p align="justify">
+              I took a 6 bar melody from a record I am working on and sent it through a BiQuadFilter node, Convolver node, and Gain node.
+              To successfully initiate this chain, I had to understand the process of connecting the output of one node to the input of another node.
+              The Convolver node is not adjustable and follows the BiQuadFilter node, while preceding the Master Gain Knob.
+            </p>
+
+      
+            <center>
+            <p>
+              <button onclick="sample2.toggle();">Play/Pause</button>
+                
+                <p><input type="range" min="0" max="1" step="0.01" value="1" onchange="sample2.changeFrequency(this);">Selected Frequency of Low Pass Filter</p>
+                
+                <p><input type="range" min="0" max="1" step="0.01" value="0" onchange="sample2.changeQuality(this);">Gain Knob at Selected Frequency</p>
+                
+                <p><input type="range" min="0" max="100" value="100" oninput="sample2.changeVolume(this);">Master Volume of Signal</p>
+            </p>
+          </center>
+
+            <script src="./static/js/shared.js"></script>
+            <script src="room-effects-sample.js"></script>
+        
+            <script src="multinode.js"></script>
+
+            <script>
+                var sample = new RoomEffectsSample(document.querySelectorAll('input.effect'));
+
+                var sample2 = new FilterSample();
+              
+            </script>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+
+</html>
